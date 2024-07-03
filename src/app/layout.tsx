@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import {PrimeReactProvider} from "primereact/api";
 import "./globals.css";
+import 'primereact/resources/primereact.css';
+import 'primereact/resources/primereact.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main>
+          <PrimeReactProvider value={{ unstyled: false }}>{children}</PrimeReactProvider>
+        </main>
+      </body>
     </html>
   );
 }
