@@ -3,6 +3,9 @@ import MenubarDemo from "@/components/Menu/Menu";
 
 export default function Home() {
   return (
-      <MenubarDemo />
+      <>
+        <MenubarDemo />
+        <h1>Ola</h1>
+      </>
   );
 }
