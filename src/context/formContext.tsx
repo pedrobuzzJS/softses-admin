@@ -69,6 +69,5 @@ export const FormProvider: React.FC<FormWithChildren> = ({ children }) => {
 };
 
 export function useForm() {
-    const context = useContext(FormContext);
-    return context;
+    return useContext(FormContext);
 }

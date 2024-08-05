@@ -5,6 +5,9 @@ import "./globals.css";
 import 'primereact/resources/primereact.css';
 import 'primereact/resources/primereact.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import ContentLayout from "@/components/ContentLayout/ContentLayout";
+import SideBar from "@/components/Menu/SideBar/SideBar";
+import {SMenuProvider} from "@/context/menuContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +25,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <main>
-          <PrimeReactProvider value={{ unstyled: false }}>{children}</PrimeReactProvider>
+          <PrimeReactProvider value={{ unstyled: false }}>
+            <SMenuProvider>
+              <SideBar />
+              <ContentLayout>
+                {children}
+              </ContentLayout>
+            </SMenuProvider>
+          </PrimeReactProvider>
         </main>
       </body>
     </html>
