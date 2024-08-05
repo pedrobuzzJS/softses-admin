@@ -4,11 +4,13 @@
   height: 100%;
   position: fixed;
   transition: all 0.4s;
+  z-index: 100;
 }
 
 .open {
   width: 250px;
   transition: all 0.4s;
+  z-index: 100;
 }
 
 .sideBarHeader {

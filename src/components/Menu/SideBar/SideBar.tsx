@@ -28,15 +28,15 @@ export default function SideBar() {
                     onMouseOver={() => handleSideBar(true)}
                     onMouseLeave={() => handleSideBar(false)}
                 ></div>
-                {/*<div*/}
-                {/*    style={{*/}
-                {/*        position: "absolute",*/}
-                {/*        zIndex: 100,*/}
-                {/*        left: 0,*/}
-                {/*        top: "50px"*/}
-                {/*    }}*/}
-                {/*>*/}
-                {/*</div>*/}
+                <div
+                    style={{
+                        position: "absolute",
+                        zIndex: 100,
+                        left: 0,
+                        top: "50px"
+                    }}
+                >
+                </div>
             </aside>
         </>
     );

@@ -1,0 +1,13 @@
+.content {
+  width: calc(100% - 50px);
+  margin-left: 50px;
+  transition: all 0.4s;
+  background-color: #2b303b;
+  color: #eeeeee;
+}
+
+.open {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  transition: all 0.4s;
+}

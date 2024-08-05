@@ -3,10 +3,13 @@
 import React, {useState} from 'react';
 import {Keys, Menu, MenuBar, Separator} from 'react-app-menu';
 import 'react-app-menu/dist/styles/react-app-menu.css'
+import {useSMenu} from "@/context/menuContext";
+import styles from "./_menuBar.module.scss";
 
 export default function SMenuBar() {
     let [showToolbar, setShowToolbar] = useState(true);
     let [showTooltip, setShowTooltip] = useState(false);
+    const { superOpenSideBar, isSideBarOpen } = useSMenu();
 
     const handleMenuSelect = (menuId: string): void => {
         console.log(menuId)
@@ -25,11 +28,11 @@ export default function SMenuBar() {
     };
 
     return (
-        <div style={{
-            background: '#FBFBFB',
-            borderBottom: '1px solid rgb(218, 220, 224)',
-            paddingLeft: "50px"
-        }}>
+        <div
+            className={`${styles.content} ${
+                superOpenSideBar || isSideBarOpen ? styles.open : styles.content
+            }`}
+        >
             <MenuBar onSelect={handleMenuSelect} openMenusOnHover>
                 <Menu label='File' focusKey={"F"}>
                     <Menu label='New'>
