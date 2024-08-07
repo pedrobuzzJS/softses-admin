@@ -1,0 +1,16 @@
+.p-tabmenu {
+  background: #2b303b;
+
+  .p-tabmenu-nav {
+    display: flex;
+    background: #2b303b;
+
+    .p-tabmenuitem {
+      a {
+        span {
+          //color: tomato;
+        }
+      }
+    }
+  }
+}
