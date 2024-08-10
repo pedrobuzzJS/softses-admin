@@ -1,16 +1,14 @@
 .p-tabmenu {
   background: #2b303b;
+  height: 100%;
 
   .p-tabmenu-nav {
     display: flex;
+    height: 95%;
+    gap: 2px;
     background: #2b303b;
 
     .p-tabmenuitem {
-      a {
-        span {
-          //color: tomato;
-        }
-      }
     }
   }
 }

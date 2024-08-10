@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-      <h1>Página Base</h1>
+      <h1>Raiz</h1>
   );
 }

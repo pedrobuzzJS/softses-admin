@@ -1,12 +1,15 @@
 "use client"
 
-import {PropsWithChildren} from "react";
+import {PropsWithChildren, useEffect, useState} from "react";
 import styles from "./_contantPage.module.scss";
 import SMenuBar from "@/components/Menu/MenuBar/Menu";
-import {useSMenu} from "@/context/menuContext";
+import {useSMenu} from "@/context/menuNavigationContext";
+import React from "react";
+import Link from "next/link";
 
 export default function ContentLayout({ children }: PropsWithChildren) {
-    const { superOpenSideBar } = useSMenu();
+    const { superOpenSideBar, redirectPage } = useSMenu();
+    const [ currentPage, setCurrentPage ] = useState<React.ReactNode | null>(null);
 
     return (
         <>
