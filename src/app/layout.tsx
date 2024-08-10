@@ -3,11 +3,10 @@ import { Inter } from "next/font/google";
 import {PrimeReactProvider} from "primereact/api";
 import "./globals.css";
 import 'primereact/resources/primereact.css';
-import 'primereact/resources/primereact.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import ContentLayout from "@/components/ContentLayout/ContentLayout";
 import SideBar from "@/components/Menu/SideBar/SideBar";
-import {SMenuProvider} from "@/context/menuContext";
+import {SMenuProvider} from "@/context/menuNavigationContext";
 
 const inter = Inter({ subsets: ["latin"] });
 

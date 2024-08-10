@@ -1,7 +1,7 @@
 "use client"
 
 import styles from "./_sideBar.module.scss";
-import {useSMenu} from "@/context/menuContext";
+import {useSMenu} from "@/context/menuNavigationContext";
 
 export default function SideBar() {
     const { isSideBarOpen, toggleSideBar, handleSideBar } = useSMenu();

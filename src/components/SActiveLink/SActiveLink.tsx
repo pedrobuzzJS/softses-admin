@@ -4,7 +4,7 @@ import Link, { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 
 type SesActiveLinkProps = LinkProps & {
-    children: React.ReactElement;
+    children?: React.ReactElement;
 };
 
 export default function SActiveLink({ href, children, ...props }: SesActiveLinkProps) {
@@ -12,15 +12,13 @@ export default function SActiveLink({ href, children, ...props }: SesActiveLinkP
     const isActive = pathName === href.toString();
 
     return (
-        <div>
-            <Link
-                href={href}
-                {/*{...props}*/}
-                className={isActive ? "" : ""}
-                style={{ color: "yellow" }}
-            >
-                {children}
-            </Link>
-        </div>
+        <Link
+            href={href}
+            {/*{...props}*/}
+            // className={isActive ? "" : ""}
+            // style={{ color: "yellow" }}
+        >
+            {/*{children}*/}
+        </Link>
     );
 }
