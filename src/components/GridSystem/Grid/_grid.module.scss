@@ -1,0 +1,8 @@
+.gridContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: content-box;
+  align-items: flex-start;
+  // overflow-y: hidden;
+}

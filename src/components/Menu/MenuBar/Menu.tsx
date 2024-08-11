@@ -50,7 +50,7 @@ export default function SMenuBar() {
                         {/*    </Menu>*/}
                         {/*</Menu>*/}
                         <Menu label='Raiz' hotKeys={Keys.altShift("S")} onSelect={() => goesTo('/')}/>
-                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => goesTo('home')}/>
+                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => goesTo('dash')}/>
                     </Menu>
                     {/*<Menu label='Edit' focusKey='E'>*/}
                     {/*    <Menu menuId='search' label='Search' hotKeys={Keys.ctrlShift('F')}/>*/}

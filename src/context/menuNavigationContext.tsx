@@ -1,13 +1,12 @@
 "use client"
 
-import React, { createContext, useContext, useEffect, useState, PropsWithChildren } from "react";
+import React, { createContext, useContext, useState, PropsWithChildren } from "react";
 import {delayAndRun} from "@/helpers/functions";
 import { MenuItem } from "primereact/menuitem";
 import {TabMenuItem} from "@/components/TabMenusNavigation/TabMenuItem/TabMenuItem";
-// import collect from "collect.js";
-import Link from "next/link";
 import {useRouter} from "next/navigation";
 import {NavigateOptions} from "next/dist/shared/lib/app-router-context.shared-runtime";
+import {produce} from "immer";
 
 interface SMenuProps {
     superOpenSideBar: boolean;
@@ -45,26 +44,20 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [ activeMenus, setActiveMenus ] = useState<STabNavigationProps[]>(
         [
-            {
-                label: 'Raiz',
-                path: '/',
-                itemIndex: 0,
-                active: true,
-                template: (item) => itemRenderer(item, 0)
-            },
-            {
-                label: 'Home',
-                path: 'home',
-                itemIndex: 1,
-                active: false,
-                template: (item) => itemRenderer(item, 1)
-            },
             // {
-            //     label: 'Asiyyajavayant',
-            //     itemIndex: 2,
+            //     label: 'Home',
+            //     path: '/',
+            //     itemIndex: 0,
+            //     active: true,
+            //     template: (item) => itemRenderer(item, 0)
+            // },
+            // {
+            //     label: 'Dash',
+            //     path: 'dash',
+            //     itemIndex: 1,
             //     active: false,
-            //     template: (item) => itemRenderer(item, 2),
-            // }
+            //     template: (item) => itemRenderer(item, 1)
+            // },
         ]
     );
 
@@ -80,8 +73,14 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
         });
         setActiveIndex(collect<STabNavigationProps[]>(activeMenus).pluck('itemIndex').toArray().indexOf(tab));
         if (path) goesTo(path);
-        // goesTo();
     }
+
+    const addTab = (newTab: STabNavigationProps) => [
+        setActiveMenus([
+            ...activeMenus,
+            newTab
+        ])
+    ]
 
     const toggleSideBar = () => {
         delayAndRun(() => {
@@ -100,6 +99,13 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
     };
 
     const goesTo = (path: string, options?: NavigateOptions) => {
+        addTab({
+            label: path,
+            path: path,
+            itemIndex: 0,
+            active: true,
+            template: (item) => itemRenderer(item, 0)
+        })
         return router.push(path)
     }
 
