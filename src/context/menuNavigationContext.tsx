@@ -105,7 +105,7 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
             itemIndex: activeMenus.length != 0 ? collect(activeMenus).max('itemIndex') + 1 : 0,
             label: label,
             path: path,
-            template: (item) => itemRenderer(item, 1)
+            template: (item) => itemRenderer(item as STabNavigationProps)
         }
         setActiveMenus([
             ...activeMenus,

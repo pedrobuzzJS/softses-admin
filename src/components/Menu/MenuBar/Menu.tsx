@@ -8,8 +8,8 @@ import styles from "./_menuBar.module.scss";
 import TabMenusNavigation from "@/components/TabMenusNavigation/TabMenusNavigation";
 
 export default function SMenuBar() {
-    let [showToolbar, setShowToolbar] = useState(true);
-    let [showTooltip, setShowTooltip] = useState(false);
+    const [showToolbar, setShowToolbar] = useState(true);
+    const [showTooltip, setShowTooltip] = useState(false);
     const {superOpenSideBar, isSideBarOpen} = useSMenu();
     const { activeMenus, goesTo, addNewTab } = useSMenu();
 
