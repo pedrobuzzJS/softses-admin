@@ -6,7 +6,7 @@ import { MenuItem } from "primereact/menuitem";
 import {TabMenuItem} from "@/components/TabMenusNavigation/TabMenuItem/TabMenuItem";
 import {useRouter} from "next/navigation";
 import {NavigateOptions} from "next/dist/shared/lib/app-router-context.shared-runtime";
-import {produce} from "immer";
+import collect from "collect.js";
 
 interface SMenuProps {
     superOpenSideBar: boolean;
@@ -14,13 +14,16 @@ interface SMenuProps {
     toggleSideBar: () => any;
     handleSideBar: (open: boolean) => any;
     activeIndex: number;
-    selectTab: (index: number, path?: string) => void;
+    selectTab: (tab: number, path?: string) => void;
     activeMenus: STabNavigationProps[];
+    currentTab: STabNavigationProps;
     closeTab: (activeIndex: number) => void;
     goesTo: (path: string, options?: NavigateOptions)=> void;
+    addNewTab: (path: string, label: string) => void;
 }
 
 export interface STabNavigationProps extends MenuItem {
+    label: string;
     itemIndex: number;
     active: boolean;
     path?: string;
@@ -31,9 +34,9 @@ interface SMenuWithChildren extends PropsWithChildren {}
 export const MenuNavigationContext = createContext<SMenuProps>({} as SMenuProps);
 
 export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
-    const itemRenderer = (item, itemIndex) => {
+    const itemRenderer = (item: STabNavigationProps) => {
         return (
-            <TabMenuItem itemIndex={itemIndex} label={item.label} path={item.path}/>
+            <TabMenuItem itemIndex={item.itemIndex} label={item.label} path={item.path}/>
         );
     };
 
@@ -42,26 +45,43 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
     const [isSideBarOpen, setIsSideBarOpen] = useState<boolean>(false);
     const [superOpenSideBar, setSuperOpenSideBar] = useState<boolean>(false);
     const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [ currentTab, setCurrentTab ] = useState<STabNavigationProps>({} as STabNavigationProps);
     const [ activeMenus, setActiveMenus ] = useState<STabNavigationProps[]>(
         [
             // {
             //     label: 'Home',
             //     path: '/',
             //     itemIndex: 0,
-            //     active: true,
-            //     template: (item) => itemRenderer(item, 0)
+            //     active: false,
+            //     template: (item) => itemRenderer(item as STabNavigationProps)
             // },
             // {
             //     label: 'Dash',
             //     path: 'dash',
             //     itemIndex: 1,
+            //     active: true,
+            //     template: (item) => itemRenderer(item as STabNavigationProps)
+            // },
+            // {
+            //     label: 'Pessoas',
+            //     path: 'pessoas',
+            //     itemIndex: 2,
             //     active: false,
-            //     template: (item) => itemRenderer(item, 1)
+            //     template: (item) => itemRenderer(item as STabNavigationProps)
+            // },
+            // {
+            //     label: 'Contatos',
+            //     path: 'contatos',
+            //     itemIndex: 3,
+            //     active: false,
+            //     template: (item) => itemRenderer(item)
             // },
         ]
     );
 
     const closeTab = async (activeIndex: number) => {
+        const relativeTab = collect(activeMenus).first();
+        selectTab(relativeTab?.itemIndex, relativeTab?.path);
         setActiveMenus(activeMenus.filter((item) => item.itemIndex != activeIndex));
     }
 
@@ -71,16 +91,27 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
                 return item.active = true
             return item.active = false
         });
+        setActiveMenus(activeMenus)
         setActiveIndex(collect<STabNavigationProps[]>(activeMenus).pluck('itemIndex').toArray().indexOf(tab));
         if (path) goesTo(path);
     }
 
-    const addTab = (newTab: STabNavigationProps) => [
+    const addNewTab = (path: string, label: string) => {
+        if (collect(activeMenus).pluck('path').toArray().includes(path))
+            return
+
+        const newTab: STabNavigationProps = {
+            active: false,
+            itemIndex: activeMenus.length != 0 ? collect(activeMenus).max('itemIndex') + 1 : 0,
+            label: label,
+            path: path,
+            template: (item) => itemRenderer(item, 1)
+        }
         setActiveMenus([
             ...activeMenus,
             newTab
         ])
-    ]
+    }
 
     const toggleSideBar = () => {
         delayAndRun(() => {
@@ -99,13 +130,6 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
     };
 
     const goesTo = (path: string, options?: NavigateOptions) => {
-        addTab({
-            label: path,
-            path: path,
-            itemIndex: 0,
-            active: true,
-            template: (item) => itemRenderer(item, 0)
-        })
         return router.push(path)
     }
 
@@ -119,7 +143,9 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
             selectTab: selectTab,
             activeMenus: activeMenus,
             closeTab: closeTab,
-            goesTo: goesTo
+            goesTo: goesTo,
+            addNewTab: addNewTab,
+            currentTab: currentTab,
         }}>
             {children}
         </MenuNavigationContext.Provider>

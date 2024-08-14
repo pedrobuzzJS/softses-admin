@@ -11,7 +11,7 @@ export default function SMenuBar() {
     let [showToolbar, setShowToolbar] = useState(true);
     let [showTooltip, setShowTooltip] = useState(false);
     const {superOpenSideBar, isSideBarOpen} = useSMenu();
-    const { activeMenus, goesTo } = useSMenu();
+    const { activeMenus, goesTo, addNewTab } = useSMenu();
 
     const handleMenuSelect = (menuId: string): void => {
         switch (menuId) {
@@ -37,32 +37,9 @@ export default function SMenuBar() {
             >
                 <MenuBar onSelect={handleMenuSelect} openMenusOnHover>
                     <Menu label='File' focusKey={"F"}>
-                        {/*<Menu label='New'>*/}
-                        {/*    <Menu menuId='NewNotebook' label='Notebook'/>*/}
-                        {/*    <Menu menuId="NewNote" label='Note' hotKeys={Keys.ctrlAlt('N')}/>*/}
-                        {/*    <Separator/>*/}
-                        {/*    <Menu label="Folder" hotKeys={Keys.ctrlAlt("F")} onSelect={onFolderSelect}/>*/}
-                        {/*    <Menu label='New'>*/}
-                        {/*        <Menu menuId='NewNotebook' label='Notebook'/>*/}
-                        {/*        <Menu menuId="NewNote" label='Note' hotKeys={Keys.ctrlAlt('N')}/>*/}
-                        {/*        <Separator/>*/}
-                        {/*        <Menu label="Folder" hotKeys={Keys.ctrlAlt("F")} onSelect={onFolderSelect}/>*/}
-                        {/*    </Menu>*/}
-                        {/*</Menu>*/}
-                        <Menu label='Raiz' hotKeys={Keys.altShift("S")} onSelect={() => goesTo('/')}/>
-                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => goesTo('dash')}/>
+                        <Menu label='Raiz' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('/', 'Home')}/>
+                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('dash', 'Dash')}/>
                     </Menu>
-                    {/*<Menu label='Edit' focusKey='E'>*/}
-                    {/*    <Menu menuId='search' label='Search' hotKeys={Keys.ctrlShift('F')}/>*/}
-                    {/*    <Menu menuId='undo' label='Undo' hotKeys={Keys.ctrl('Z')}/>*/}
-                    {/*    <Menu menuId='rename' label='Rename' hotKeys={Keys.shift('F6')}/>*/}
-                    {/*</Menu>*/}
-                    {/*<Menu label='View' focusKey='V'>*/}
-                    {/*    <Menu menuId='toolbar' label='Toolbars' checked={showToolbar} hotKeys={Keys.ctrlAlt("T")}/>*/}
-                    {/*    <Menu menuId='statusBar' label='StatusBar'/>*/}
-                    {/*    <Menu menuId='toolTips' label='Tooltips' checked={showTooltip}*/}
-                    {/*          hotKeys={Keys.ctrlAltShift("T")}/>*/}
-                    {/*</Menu>*/}
                 </MenuBar>
             </div>
             <div

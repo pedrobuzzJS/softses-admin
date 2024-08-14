@@ -7,26 +7,26 @@
     background: #ffffff;
     border-color: #6366f1;
     border-radius: 0;
+    position: relative;
 
     .p-menuitem-internal {
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
       height: 100%;
       width: 100%;
       background: #eeeeee;
+    }
 
-      .p-menuitem-delete {
-        display: block;
-        padding: 3px;
-        position: absolute;
-        right: 1px;
-        top: 1px;
-        color: black;
-        cursor: pointer;
-        z-index: 200;
-      }
+    .p-menuitem-delete {
+      display: block;
+      padding: 3px;
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      color: black;
+      cursor: pointer;
+      z-index: 200;
     }
   }
 }
