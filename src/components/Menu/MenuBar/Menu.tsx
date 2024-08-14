@@ -39,6 +39,8 @@ export default function SMenuBar() {
                     <Menu label='File' focusKey={"F"}>
                         <Menu label='Raiz' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('/', 'Home')}/>
                         <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('dash', 'Dash')}/>
+                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('contatos', 'Contatos')}/>
+                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('pessoas', 'Pessoas')}/>
                     </Menu>
                 </MenuBar>
             </div>
