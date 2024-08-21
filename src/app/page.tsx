@@ -1,5 +1,16 @@
+"use client"
+
+import Input from "@/components/Inputs/InputText/Input";
+import Grid from "@/components/GridSystem/Grid/Grid";
+
 export default function Home() {
-  return (
-      <h1>Home</h1>
-  );
+    return (
+      <>
+          <Grid
+              justify={"start"}
+          >
+              <h2>Home</h2>
+          </Grid>
+      </>
+    );
 }

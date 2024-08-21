@@ -1,33 +1,52 @@
-import React from "react";
-import { Dialog, DialogProps } from "primereact/dialog";
-import Grid, {Cols} from "@/components/GridSystem/Grid/Grid";
-import "./_modal.scss";
-// import style from "./_modal.module.scss";
-interface IModalProps extends DialogProps {
-    col?: Cols;
+"use client"
+
+import {Dialog, DialogProps} from "primereact/dialog";
+import "./_modal.scss"
+import {useState} from "react";
+import Grid from "@/components/GridSystem/Grid/Grid";
+
+interface SModalProps extends DialogProps {
+    registerId?: string | number;
+    onHide?: () => void;
+    headerLabel?: string;
 }
 
-export const Modal: React.FC<IModalProps> = ({
+export default function Modal({
     children,
     header,
     footer,
-    visible,
-    onHide,
     draggable = false,
     resizable = false,
+    headerLabel,
     ...props
-}) => {
+}: SModalProps) {
+    const [ isVisible, setIsVisible ] = useState<boolean>(true);
+
+    const HEADER = (
+        <Grid height={50}>
+            <span style={{
+                paddingLeft: "10px"
+            }}>{headerLabel || '{label}'}</span>
+        </Grid>
+    );
+
+    const FOOTER = (
+        <Grid height={50} justify="end">
+        </Grid>
+    );
+
     return (
         <Dialog
-            header={header}
-            visible={visible}
-            footer={footer}
-            onHide={onHide}
+            visible={isVisible}
+            header={HEADER}
+            footer={FOOTER}
+            esizable={false}
+            onHide={() => setIsVisible(false)}
             draggable={draggable}
             resizable={resizable}
-            {/*{...props}*/}
+            {...props}
         >
-            <Grid padding={5}>{children}</Grid>
+            {children}
         </Dialog>
-    );
-};
+    )
+}

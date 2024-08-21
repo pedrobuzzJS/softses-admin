@@ -33,7 +33,7 @@ export default function Grid({
             style={{
                 minHeight: `${height}px`,
                 justifyContent: justify,
-                alignItems: `${alignItems}`
+                alignItems: `${alignItems}`,
             }}
         >
             {children}

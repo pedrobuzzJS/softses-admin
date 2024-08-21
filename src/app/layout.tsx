@@ -7,6 +7,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import ContentLayout from "@/components/ContentLayout/ContentLayout";
 import SideBar from "@/components/Menu/SideBar/SideBar";
 import {SMenuProvider} from "@/context/menuNavigationContext";
+import {FormProvider} from "@/context/formContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,12 +26,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <main>
           <PrimeReactProvider value={{ unstyled: false }}>
-            <SMenuProvider>
-              <SideBar />
-              <ContentLayout>
-                {children}
-              </ContentLayout>
-            </SMenuProvider>
+            <FormProvider>
+              <SMenuProvider>
+                <SideBar />
+                <ContentLayout>
+                  {children}
+                </ContentLayout>
+              </SMenuProvider>
+            </FormProvider>
           </PrimeReactProvider>
         </main>
       </body>

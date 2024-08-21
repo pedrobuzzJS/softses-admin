@@ -19,21 +19,30 @@
     }
 
     .p-menuitem-delete {
-      display: block;
+      display: flex;
       padding: 3px;
       position: absolute;
+      width: 15px;
+      height: 15px;
       right: 0.5px;
       top: 0.5px;
       color: black;
       cursor: pointer;
       z-index: 100;
-      border-radius: 5px;
-      font-size: 10px;
+      border-radius: 50%;
+      font-size: 15px;
       margin: 1px;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      align-self: center;
+      justify-items: center;
+      text-align: center;
 
       &:hover {
         transition: all 0.4s;
         background: tomato;
+        border: 5px black;
       }
     }
   }

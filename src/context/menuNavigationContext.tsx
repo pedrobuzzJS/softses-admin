@@ -29,6 +29,7 @@ export interface STabNavigationProps extends MenuItem {
     path?: string;
 }
 
+
 interface SMenuWithChildren extends PropsWithChildren {}
 
 export const MenuNavigationContext = createContext<SMenuProps>({} as SMenuProps);
@@ -46,38 +47,7 @@ export const SMenuProvider: React.FC<SMenuWithChildren> = ({ children }) => {
     const [superOpenSideBar, setSuperOpenSideBar] = useState<boolean>(false);
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [ currentTab, setCurrentTab ] = useState<STabNavigationProps>({} as STabNavigationProps);
-    const [ activeMenus, setActiveMenus ] = useState<STabNavigationProps[]>(
-        [
-            // {
-            //     label: 'Home',
-            //     path: '/',
-            //     itemIndex: 0,
-            //     active: false,
-            //     template: (item) => itemRenderer(item as STabNavigationProps)
-            // },
-            // {
-            //     label: 'Dash',
-            //     path: 'dash',
-            //     itemIndex: 1,
-            //     active: true,
-            //     template: (item) => itemRenderer(item as STabNavigationProps)
-            // },
-            // {
-            //     label: 'Pessoas',
-            //     path: 'pessoas',
-            //     itemIndex: 2,
-            //     active: false,
-            //     template: (item) => itemRenderer(item as STabNavigationProps)
-            // },
-            // {
-            //     label: 'Contatos',
-            //     path: 'contatos',
-            //     itemIndex: 3,
-            //     active: false,
-            //     template: (item) => itemRenderer(item)
-            // },
-        ]
-    );
+    const [ activeMenus, setActiveMenus ] = useState<STabNavigationProps[]>([]);
 
     const closeTab = async (activeIndex: number) => {
         const relativeTab = collect(activeMenus).first();

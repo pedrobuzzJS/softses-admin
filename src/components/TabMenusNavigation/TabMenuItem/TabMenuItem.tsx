@@ -17,7 +17,9 @@ export function TabMenuItem({ itemIndex, label, path, ee }: STabMenuItem) {
                 <div className="p-menuitem-internal" onClick={(e) => selectTab(itemIndex, path)} ref={ref}>
                     <span>{label}</span>
                 </div>
-                <span className="p-menuitem-delete" onClick={() => closeTab(itemIndex)}>X</span>
+                <span className="p-menuitem-delete" onClick={() => closeTab(itemIndex)}>
+                    <div >x</div>
+                </span>
             </div>
         </>
     );

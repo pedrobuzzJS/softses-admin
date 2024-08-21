@@ -24,11 +24,13 @@
     "md5": "^2.3.0",
     "mime": "^4.0.3",
     "next": "14.2.4",
+    "nuqs": "^1.17.8",
     "primeicons": "^7.0.0",
     "primereact": "^10.6.6",
     "react": "^18",
     "react-app-menu": "^1.0.11",
     "react-dom": "^18",
+    "react-input-mask": "^2.0.4",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

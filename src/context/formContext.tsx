@@ -7,10 +7,9 @@ import React, {
     useContext,
     useState
 } from "react";
-interface inputField {
+interface inputField<T = number> {
     name: any;
-    ref?: any;
-    value?: any;
+    value?: T;
 }
 interface IFormProps {
     id?: unknown;
@@ -36,7 +35,7 @@ export const FormProvider: React.FC<FormWithChildren> = ({ children }) => {
             ...form,
             [name]: value
         };
-        if (!fields.includes(name)) fields.push(name);
+        console.log(dot.object(form))
     };
 
     const handleSubmit = async (callBack: (data: unknown) => Promise<void>) => {

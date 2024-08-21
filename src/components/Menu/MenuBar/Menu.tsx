@@ -11,7 +11,7 @@ export default function SMenuBar() {
     const [showToolbar, setShowToolbar] = useState(true);
     const [showTooltip, setShowTooltip] = useState(false);
     const {superOpenSideBar, isSideBarOpen} = useSMenu();
-    const { activeMenus, goesTo, addNewTab } = useSMenu();
+    const { addNewTab } = useSMenu();
 
     const handleMenuSelect = (menuId: string): void => {
         switch (menuId) {
@@ -24,10 +24,6 @@ export default function SMenuBar() {
         }
     };
 
-    const onFolderSelect = (): void => {
-        // console.log('Folder selected');
-    };
-
     return (
         <>
             <div
@@ -38,9 +34,9 @@ export default function SMenuBar() {
                 <MenuBar onSelect={handleMenuSelect} openMenusOnHover>
                     <Menu label='File' focusKey={"F"}>
                         <Menu label='Raiz' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('/', 'Home')}/>
-                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('dash', 'Dash')}/>
-                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('contatos', 'Contatos')}/>
-                        <Menu label='Home' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('pessoas', 'Pessoas')}/>
+                        <Menu label='Dash' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('dash', 'Dash')}/>
+                        <Menu label='Contatos' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('contatos', 'Contatos')}/>
+                        <Menu label='Pessoas' hotKeys={Keys.altShift("S")} onSelect={() => addNewTab('pessoas', 'Pessoas')}/>
                     </Menu>
                 </MenuBar>
             </div>
